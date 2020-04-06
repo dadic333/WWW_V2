@@ -1,0 +1,183 @@
+/*  .trida    = přída;            použití je <p class="trida">NEJAKY OBSAH</p>
+    #identif  = identifikátor;    použití je id="identif" - pouze jeden originál na zorazovanou stránku
+*/
+
+h1 {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.5em;
+  z-index: -1200;
+  background-color: #B0BED9;
+  border-bottom-right-radius: 0.9rem;
+  border-bottom-left-radius: 0.9rem;
+}
+
+h2 {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.5em;
+}
+
+.z-index-1031 {
+  z-index: 1031;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+#body-pozadi {
+    /*
+  width: 100%; 
+  
+  background-color: whitesmoke;
+ 
+  background: linear-gradient( rgba(100, 100, 100, 0.3), 
+                                rgba(255, 255, 255, 0.9));
+   
+  background-image: url(../pictures/20190326_093837.jpg);
+  margin-bottom: 100px;
+  */
+  /*width: 100%;*/
+  background-image: 
+      linear-gradient( rgba(200, 200, 200, 0.9), rgba(200, 200, 200, 0.9)),
+      url("../pictures/20190326_093837.jpg") ;
+  background-color: #cccccc;
+  background-position: center;
+  background-repeat: no-repeat;
+  /*background-size: cover;*/
+}
+.jumbotron{
+    background-color: whitesmoke;
+}
+footer {
+    position: absolute;
+    bottom: 0px;
+    width: 100%;
+    background-color: #5d401d;
+    color: white;
+    text-align: center;
+    z-index: 100;
+    padding: 10px 0px 0px 0px; 
+    margin-top: 10px;
+    
+    background-color: #5d401d !important;
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#351e04+9,5f6475+100 */
+    background: #351e04; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #351e04 90%, #5f6475 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #351e04 90%,#5f6475 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #351e04 90%,#5f6475 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#351e04', endColorstr='#5f6475',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+    /*height: 80px; /* Set the fixed height of the footer here */
+    /*line-height: 20px; /* Vertically center the text there */   
+}
+.breadcrumb-item + .breadcrumb-item::before {
+  content: ">";
+}
+.btn-vyhledat {
+    color: #ffffff;
+    background-color: #343835;
+    border-color: #3f4c42;
+    background-color: #4f5b69;
+}
+.btn-odeslat{
+  background-color: darkblue;
+  color: whitesmoke;
+  font-size: larger;
+  width: 150%;
+  margin: 1em 0 2em 0;
+}
+.navbar-vlastniNav {
+    background-color: #5d401d !important;
+    /*margin-bottom: 2rem;*/
+    
+    
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#351e04+9,5f6475+100 */
+    background: #351e04; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #351e04 90%, #5f6475 100%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #351e04 90%,#5f6475 100%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #351e04 90%,#5f6475 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#351e04', endColorstr='#5f6475',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+.navbar-dark .navbar-nav .nav-link {
+    color: rgb(234, 237, 240);
+}
+.underline-on-hover:hover {
+    text-decoration: underline;
+}
+/*.nav-item:hover {
+    text-decoration: underline;
+}*/
+.dropdown-item:hover {
+    text-decoration: underline;
+}
+.dropdown-item{
+    margin-top: 1em;
+    margin-bottom: 1em;
+}
+.dropdown-menu{
+    background-color: #e9ecef;
+}
+.dropdown-item{
+    font-size: 105%;
+}
+.dropdown-toggle{
+    font-size: 105%;
+}
+.w-7em{
+    font-style: italic;
+    display: inline-block;
+    width: 7em;
+}
+.btn-vlastni{
+    color: #fff;
+    background-color: #6c757d;
+    border-color: #5d401d;
+}
+#logo{
+    font-family: Comic Sans MS;
+    padding: 5px;
+    border: solid;
+    border-color: #5f6475;
+    /*border-bottom-color: #351e04;*/
+    border-radius: 0.5em;
+    padding: 0.5em;
+    /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#5f6475+5,5f6475+5,351e04+56 */
+    background: #5f6475; /* Old browsers */
+    background: -moz-linear-gradient(-45deg, #5f6475 5%, #5f6475 5%, #351e04 26%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #5f6475 5%,#5f6475 5%,#351e04 26%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #5f6475 5%,#5f6475 5%,#351e04 26%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#5f6475', endColorstr='#351e04',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
+}
+/*label{
+  display: inline-block;
+  width: 15%;
+}
+.input-group-text{
+  width: 100%;
+}
+input{
+  width: 90%;
+  padding-left: 0.5em;
+}
+select{
+  width: 90%;
+  padding-left: 0.5em;
+}*/
+
+
+.icon {
+    background: url('../favs/KabKniha.ico');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
+.iconCompletFav {
+    background: url('../favs/completFav.ico');
+    height: 20px;
+    width: 20px;
+    display: block;
+    /* Other styles here */
+}
