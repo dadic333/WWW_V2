@@ -32,7 +32,7 @@
         <h1 style="position: absolute; top: 80px; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">KABELOVÉ HLAVY - Výpis</h1>
     </div>    
     --%>
-    <div class="d-block fixed-top  mt-5 pt-4 rounded">
+    <div class="d-block fixed-top  mt-5 pt-5 rounded">
         <h1>KABELOVÉ HLAVY</h1>
     </div>
 <!-- fixování nadpisu
