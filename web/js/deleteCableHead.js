@@ -1,7 +1,9 @@
 var CABLEDEL = {
   toDelete: function(id){
+
     $.ajax({
-      url:"deleteCableHead.jsp", data:{ id:id},
+      url:"deleteCableHeadForJS.jsp", 
+      data:{ id:id},
       success: function(data){
         alert(data);
       }
@@ -11,10 +13,7 @@ var CABLEDEL = {
   
 $(document).ready(function() {
   $("#deleteCableHead").click(function(){  
-  let id = document.getElementById("deleteId");
-  console.log(id);
+  let id = document.getElementById("id").value;
     CABLEDEL.toDelete(id);
   });
 });
-
-

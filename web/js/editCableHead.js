@@ -1,8 +1,9 @@
 var CABLE = {
   init: function(id){
-    var id=6;
+    var id=4;
     $.ajax({
-    url:"getCableHead.jsp", data:{ id:id},
+    url:"getCableHead.jsp",
+    data:{ id:id},
     success: function(data){
       console.log(data);
     }
@@ -12,7 +13,7 @@ var CABLE = {
     $.ajax({
       url:"editCableHead.jsp", data:{ id:id, name:name, building:building, note:note},
       success: function(data){
-        alert("Byla upravena kabelová hlava:  "+data+"jméno: "+name+";   budova: "+building);
+        alert("Byla upravena kabelová hlava:  "+data);
       }
     });
   }
@@ -29,6 +30,3 @@ $(document).ready(function() {
     CABLE.setData(id, name, building, note);
   });
 });
-
-
-

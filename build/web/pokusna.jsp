@@ -1,50 +1,93 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<%@page contentType="text/html" pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<% request.setCharacterEncoding("utf-8"); %>
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link href="css/styl.css" rel="stylesheet">
+    <link href="css/formStyl.css" rel="stylesheet">
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <title>Delete Confirm</title>
+    <title>JSP Page</title>
   </head>
-  <body>
+  <body id="body-pozadi">
+    <!-- Navbar start-->
+    <%@include file="pices/navbar.jsp" %>
+    <!-- Navbar end--> 
+    <div class="jumbotron">
+      <h2>Výpis kabelů</h2>
+      <div class="container">
+        <table>
+          <tr>
+            <th>Pořadí</th>
+            <th>Index</th>
+            <th>Název kabelové hlavy</th>
+            <th>Budova</th>
+            <th>Poznámka</th>
+            <th>Počet výstupů</th>
+          </tr>
+          <% int i =0; %>
+          <c:set var="cables" value="<%= moje.appLayer.CableHeadBO.getAllCableHeads() %>"/>
+          <c:forEach var="cable" items="${cables}">
+            <tr class="edit" data-bindID="${cable.id}">  
+              <td><%= i=i+1 %> </td>
+              <td>${cable.id}</td>
+              <td><input style="width: 100%" type='text' class='_nameCable' value='${cable.name}' /></td>
+              <td><input style="width: 100%" type='text' class='_buildingCable' value='${cable.building}' /></td>
+              <td><input style="width: 100%" type='text' class='_noteCable' value='${cable.note}' /></td>
+              <td>${cable.outputcount}</td>
+              <td><a id="sendData" href="#" >Provést změnu</a></td>
+<%--            
+              <td><form action="editCableHead.jsp" method="post">
+                  <%--<input name="id" type="text" value="${cable.id}">
+                  <a id='sendData' href='#' >Odeslat data</a>
+                  </form>
+              </td>
+--%>
+            </tr> 
+          </c:forEach>  
+        </table>  
+      </div>
+    </div>
+    <!-- vytvoření kabelové hlavy start -->  
+    <div class="container">
+      <h2>Založení nové kabelové hlavy</h2>
+      <form action="newCableWithCableHeads.jsp" method="post">
+        <p><label for="name" class="item1">Název kabelové hlavy:</label>
+          <input name="name" id="name" type="text" required /></p>
+        <p><label for="building" class="item1">Budova:</label>
+          <input name="building" id="building" type="text" placeholder="zadej např. 'Ulice 20'" required/></p>
+        <p><label for="note" class="item1">Poznámka:</label>
+          <input name="note" id="note" type="text" placeholder="zadej např. '1NP, dv. 1, funkčních páry 1-30'" required/></p>
+        <p><label for="outputCount" class="item1">Počet výstupů:</label>
+          <input name="outputCount" id="outputCount" type="number" min="0" required/></p>
+        <div class="mx-auto" style="width: 70px">  
+          <button class="btn btn-odeslat" type="submit" >Vytvořit</button>
+        </div> 
+      </form>
+    </div>
+    <!-- vytvoření kabelové hlavy END -->
+    <!-- Vymazní Kabelové Hlavy start -->
+    <div class="container">
+      <h2>Vymazání kabelové hlavy</h2>
 
-      <div class="jumbotron">	  
-	  <!-- Button trigger modal -->
+      <p><input name="id" id="id" type="number" required /></p>
+        <div class="mx-auto" style="width: 70px">  
+          <button class="btn btn-odeslat" ><a id="deleteCableHead" href="#" >Vymazat</a></button>
+        </div> 
 
-        <button type="button" class="btn btn-primary w-50" data-toggle="modal" data-target="#exampleModal">
-          DELETE
-        </button>
-
-        <!-- Modal -->
-        <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">DELETE</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
-                </button>
-              </div>
-              <div class="modal-body">
-                Do you want to delete this?
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-dismiss="modal">NO</button>
-                <a href="#delete"><button type="button" class="btn btn-primary">YES</button></a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>	  
-	  
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+    </div>
+    <!-- Vymazní Kabelové Hlavy END -->
+    <!-- footer start -->
+    <%@include file="pices/footer.jsp" %>
+    <!-- footer end -->
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src='js/editCableHead.js'></script>
+    <script src="js/deleteCableHead.js"></script>
   </body>
 </html>

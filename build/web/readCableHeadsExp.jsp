@@ -32,7 +32,7 @@
         <h1 style="position: absolute; top: 80px; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">KABELOVÉ HLAVY - Výpis</h1>
     </div>    
     --%>
-    <div class="d-block fixed-top  mt-5 pt-5 rounded">
+    <div class="d-block fixed-top mt-5 pt-5 rounded">
         <h1>KABELOVÉ HLAVY</h1>
     </div>
 <!-- fixování nadpisu
@@ -54,12 +54,6 @@
         </a>
       </div>
     </div>
-<!--
-<div class="container-sm border">.container-sm</div>
-<div class="container-md mt-3 border">.container-md</div>
-<div class="container-lg mt-3 border">.container-lg</div>
-<div class="container-xl mt-3 border">.container-xl</div>
--->
     <div class="jumbotron mt-2">
         <!-- Výpis Kabelové Hlavy START -->
         <h2>Výpis kabelové hlavy</h2>
@@ -93,6 +87,8 @@
                 <th>Kab. hlava</th>
                 <th>Výstupy / Edituj</th>
                 <th>Odstraň</th>
+                <th>OdstraňV3</th>
+                <th>OdstraňV4</th>
               </tr>
             </thead>
             <tbody>
@@ -126,33 +122,19 @@
                             </form>
                         </td>
                         <td>
-                            <a href="deleteCableHead.jsp" class="delete" data-confirm="${device.id}" data-bind="${device.id}" >Delete</a>
-                            <!-- Modal -->
-                            <div class="modal fade" id="staticBackdrop" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-                              <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                  <div class="modal-header">
-                                    <h5 class="modal-title" id="staticBackdropLabel">Odstranit kabel: ${device.name}</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                      <span aria-hidden="true">&times;</span>
-                                    </button>
-                                  </div>
-                                  <div class="modal-body">
-                                    Opravdu chcete odstranit kabel: ${device.name}
-                                    <form action="deleteCableHead.jsp" method="get">
-                                        <input  name="id" value="${device.id}" type="hidden" />
-                                        <div class="d-flex justify-content-between my-3">
-                                            <button class="btn btn-secondary px-3" type="button" data-dismiss="modal">Zrušit</button>
-                                            <button class="btn btn-danger px-3" type="submit">Odstraň</button>
-                                        </div>
-                                    </form>
-                                    <button class="btn btn-default " data-href="deleteCableHead.jsp?id=${device.id}" data-toggle="modal" data-target="deleteCableHead.jsp?id=${device.id}">
-                                        deleteCableHead.jsp?id=${device.id}
-                                    </button>
-                                  </div>
-                                </div>
-                              </div>
-                            </div>
+                            <a href="deleteCableHead.jsp?id=${device.id}" class="btn btn-danger">id</a>
+                        </td>
+                        <td>
+                            <button class="btn btn-danger w-100" onclick="confirmDelete(this)" data-href="deleteCableHead.jsp?id=${device.id}" data-name="${device.name}" data-id="${device.id}">
+                                Odstraň
+                            </button>
+                        </td>
+                        <td>
+        <p><input name="deleteId" id="deleteId" type="number" required /></p>
+        <div class="mx-auto" style="width: 70px">  
+          <button class="btn btn-odeslat" ><a id="deleteCableHead" href="#" >Vymazat</a></button>
+        </div> 
+                            
                         </td>
                     </tr> 
                 </c:forEach>
@@ -166,13 +148,15 @@
                 <th>Kab. hlava</th>
                 <th>Výstupy / Edituj</th>
                 <th>Odstraň</th>
+                <th>OdstraňV3</th>
+                <th>OdstraňV4</th>
               </tr>
             </tfoot>
         </table>
             <%--          <%@include file="tables/tableCableHead.jsp" %>    --%>
       </div>
     </main>
-          <script>
+    <script>
         var deleteLinks = document.querySelectorAll('.delete');
 
         for (var i = 0; i < deleteLinks.length; i++) {
@@ -181,13 +165,23 @@
 
                   var choice = confirm(this.getAttribute('data-confirm'));
 
-                  if (choice) {
-                      
-                      sessionStorage.setItem('key', this.getAttribute('data-bind'));
+                  if (choice) {  
+                    sessionStorage.setItem('key', this.getAttribute('data-bind'));
                     window.location.href = this.getAttribute('href');
                   }
           });
         }
+    </script>
+    
+    <script>
+        function confirmDelete(toDel){
+            var name = toDel.getAttribute("data-name");
+            var id = toDel.getAttribute("data-id");
+            if (window.confirm("Opravdu chcete kabel "+name+" s ID: "+id+" odstranit?")){
+                var odkaz = toDel.getAttribute("data-href");
+                    window.location=odkaz;
+            }
+        } 
     </script>
   </body>
 </html>
