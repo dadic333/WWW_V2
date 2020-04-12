@@ -10,25 +10,27 @@
 <html>
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
+    <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
     <link href="css/formStyl.css" rel="stylesheet">
-    <link href="css/editor-tabulek.css" rel="stylesheet">
     <link href="favs/ico.ico" rel="icon" type="image/x-icon">
+    <script src="js/jquery_3.4.1/jquery.min.js"></script>
+    <script src="bootstrap/js/bootstrap.min.js"></script>
     <title>Kabelová hlava - Vytvoření</title>
   </head>
   <body id="body-pozadi">
     <!-- Navbar START-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar END--> 
-    <div class="d-block fixed-top mt-5 pt-4 rounded-right">
-        <h1>KABELOVÉ HLAVY - Vytvoření</h1>
+    <div class="d-block fixed-top mt-5 pt-5 rounded">
+        <h1>Vytvoření KABELOVÉ HLAVY</h1>
     </div>
-    <div class="container my-4 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
+    <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <!-- vytvoření kabelové hlavy START -->  
-    <div class="container mt-5 pt-5">
+    <div class="container mt-5 py-5">
       <form action="newCableHeadWithOutputs.jsp" method="get">
           <div class="form-group">
             <label for="name" class="item1">Název:</label>
@@ -46,9 +48,11 @@
             <label for="outputCount" class="item1">Počet výstupů:</label>
             <input class="item1 form-control" name="outputCount" id="outputCount" type="number" placeholder="zadej počet výstupů" required maxlength="9" min="0" max="999999999" />
           </div>
-        <div class="d-flex justify-content-center mt-3">  
-          <button class="btn btn-dark px-5" type="submit" >Vytvořit</button>
-        </div> 
+        <div class="d-flex justify-content-between mt-5" >
+            <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
+            <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
+            <a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>
+        </div>
       </form>
     </div>
     <!-- vytvoření kabelové hlavy END -->

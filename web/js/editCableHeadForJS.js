@@ -1,6 +1,6 @@
 var CABLE = {
   init: function(id){
-    var id=4;
+    //var id=4;
     $.ajax({
     url:"getCableHead.jsp",
     data:{ id:id},
@@ -22,7 +22,7 @@ var CABLE = {
 $(document).ready(function() {
   $("#sendData").click(function(){  
   var tr = $(this).parents("tr");
-  var id = tr.attr("data-bindID");
+  var id = tr.attr("data-bindID").val();
   var name = tr.find("._nameCable").val();
   var building = tr.find("._buildingCable").val();
   var note = tr.find("._noteCable").val();

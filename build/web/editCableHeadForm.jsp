@@ -12,7 +12,9 @@
     HttpSession sess = request.getSession();
     sess.setAttribute("newCableHead", moje.appLayer.CableHeadBO.getCableheadByID(id));
     
-
+    String cableHeadId = id.toString();
+    String link = ("readCableHeads.jsp?type=edit&name="+name+"&exportId="+cableHeadId);
+    response.sendRedirect(link);
     
     
 //Pokud přichází požadavek z formuláře "newCableHeadInform->tableCableHeadEditFormOne" bude upraven session a přesměrování bude zpět na "newCableHeadInform"
@@ -25,6 +27,7 @@
 //    } else{
 //        RequestDispatcher rd = request.getRequestDispatcher("formCableHead.jsp");
 //        rd.forward(request, response);            //prohlížeč si bude pamatovat minulé nastaven stránky
-        response.sendRedirect("newCableHeadInform.jsp"); //prohlížeč si bude pamatovat minulé nastaven stránky
+
+        response.sendRedirect("readCableHeads.jsp"); //prohlížeč si bude pamatovat minulé nastaven stránky
 //    }
 %>

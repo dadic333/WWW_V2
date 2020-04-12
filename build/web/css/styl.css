@@ -5,11 +5,11 @@
 h1 {
   width: 100%;
   text-align: center;
-  padding-bottom: 0.5em;
+  padding-bottom: 0.25em;
+  padding-top:  0.25em;
   z-index: -1200;
   background-color: #B0BED9;
-  border-bottom-right-radius: 0.9rem;
-  border-bottom-left-radius: 0.9rem;
+  border-radius: 0.9rem;
 }
 
 h2 {

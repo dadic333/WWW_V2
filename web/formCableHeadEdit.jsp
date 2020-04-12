@@ -25,34 +25,34 @@
       <!-- Navbar start-->
       <%@include file="pices/navbar.jsp" %>
       <!-- Navbar end--> 
-      <div class="d-block fixed-top my-5 pt-4 rounded-right">
+      <div class="d-block fixed-top my-5 pt-5 rounded">
         <h1>Editace KABELOVÉ HLAVY</h1>
       </div>
-      <div class="container my-5 pt-5">
-          <h2>Editace kabelové hlavy</h2>
+      <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
+      <div class="container mt-5 py-5">
           <c:set var="device" value="<%= moje.appLayer.CableHeadBO.getCableheadByID(Integer.parseInt(request.getParameter("id"))) %>"/>
           <div class="container">
             <form action="editCableHeadForm.jsp" method="get">
                 <div class="form-group">
-                    <label for="id">ID:</label>
+                    <label for="id" class="item1">ID:</label>
                     <input class="form-control" name="id" id="id" value='${device.id}' type="text" readonly />
                 </div>
                 <div class="form-group">
-                    <label for="name" >Název:</label>
+                    <label for="name" class="item1">Název:</label>
                     <input class="form-control" name="name" id="name" type="text" value='${device.name}' required maxlength="59" />
                 </div>
                 <div class="form-group">
-                    <label for="building" >Budova:</label>
+                    <label for="building" class="item1">Budova:</label>
                     <input class="form-control" name="building" id="building" type="text" value='${device.building}' required maxlength="49" />
                 </div>
                 <div class="form-group">
-                    <label for="note" >Poznámka:</label>
+                    <label for="note" class="item1">Poznámka:</label>
                     <input class="form-control" name="note" id="note" type="text" value='${device.note}' required maxlength="149" />
                 </div>
-                <div class="d-flex justify-content-between mt-3" >
+                <div class="d-flex justify-content-between mt-5" >
                   <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
                   <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
-                  <a href="readCableHeads.jsp" type="button" class="btn btn-info col-4 col-sm-3 p-2">Kabelové hlavy</a>
+                  <a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>
                 </div> 
             </form>
           </div>

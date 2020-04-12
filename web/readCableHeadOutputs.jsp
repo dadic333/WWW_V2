@@ -43,9 +43,11 @@
     <div class="d-block fixed-top mt-5 pt-5">
         <h1>Výstupy KABELOVÉ HLAVY - Editace</h1>
     </div>
-    <div class="container my-4 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
-    <div class="d-flex mt-5 pt-3 justify-content-center">
-        <a href="readCableHeads.jsp" class="btn btn-info">Výpis kabelových hlav</a>
+    <div class="container my-5 py-4"></div> <!-- výplň pro odstavení hlavního nadpisu -->
+    <div class="container">
+        <div class="d-flex pt-1 justify-content-end">
+            <a href="readCableHeads.jsp" class="btn btn-info">Zpět</a>
+        </div>
     </div>
 <%--    <%@include file="tables/tableCableHeadOutputs.jsp" %>  --%>
     <div class="container my-4 py-1">
@@ -82,7 +84,7 @@
                     <td>
                         <form action="formCableHeadOutput.jsp" method="get">
                             <input name="id" value='${output.id}' type="hidden" />
-                            <button class="btn btn-dark px-5" type="submit" >Uprav</button>
+                            <button class="btn btn-dark w-100" type="submit" >Uprav</button>
                         </form>
                     </td>
                   </tr> 
@@ -99,6 +101,11 @@
             </tr>
           </tfoot>
       </table>
+    </div>
+    <div class="container">
+        <div class="d-flex my-3 justify-content-end">
+            <a href="readCableHeads.jsp" class="btn btn-info">Zpět</a>
+        </div>
     </div>
   </body>
 </html>

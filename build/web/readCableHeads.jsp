@@ -6,7 +6,7 @@
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">    
     <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -22,6 +22,32 @@
     <title>Kabelová hlava</title>
   </head>
   <body id="body-pozadi">
+    <%
+      String type = request.getParameter("type");
+      String name = request.getParameter("name");
+      String strId = request.getParameter("exportId");
+    %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var type = "<%=type%>";
+            var name = "<%=name%>";
+            var id = "<%=strId%>";
+            var delDev = "delete";
+            var editDev = "edit";
+            var newDev = "new";
+            
+            if(type===delDev){
+                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla vymazána.");
+                alert(string);}
+            if(type===editDev){
+                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla upravena.");
+                alert(string);}
+            if(type===newDev){
+                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla vytvořena.");
+                alert(string);}
+            
+        });
+    </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
@@ -31,9 +57,10 @@
         <h1 style="position: absolute; top: 80px; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">KABELOVÉ HLAVY - Výpis</h1>
     </div>    
     --%>
-    <div class="d-block fixed-top  mt-5 pt-4 rounded">
+    <div class="container-fluid fixed-top mt-5 pt-5">
         <h1>KABELOVÉ HLAVY</h1>
     </div>
+    <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
 <!-- fixování nadpisu
     <div class="rounded-bottom bg-white fixed-top mt-5"><h1>Odstavec.</h1></div>
 
@@ -44,22 +71,18 @@
     </div>
 -->
     <div class="container mt-5 mb-3 pt-5 pb-1">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-center">
         <a href="formCableHeadNew.jsp" class="btn btn-info col-4">
           Založit novou kabelovou hlavu
         </a>
-        <a href="formCableHeadDelete.jsp" class="btn btn-danger col-4">
-          Odstranit kabelovou hlavu
-        </a>
       </div>
     </div>
+    <div class="container my-5 py-3 rounded-pill bg-light">
 <!--
-<div class="container-sm border">.container-sm</div>
-<div class="container-md mt-3 border">.container-md</div>
-<div class="container-lg mt-3 border">.container-lg</div>
-<div class="container-xl mt-3 border">.container-xl</div>
+    <div class="container my-5">
+    <div class="container my-5 py-3 rounded-lg" style="background-color: whitesmoke">
+    <div class="container my-5 py-3 rounded-pill" style="background-color: whitesmoke">
 -->
-    <div class="jumbotron mt-2">
         <!-- Výpis Kabelové Hlavy START -->
         <h2>Výpis kabelové hlavy</h2>
         <form action="readCableHeadOutputs.jsp" method="get">
@@ -91,6 +114,7 @@
                 <th>Poznámka</th>
                 <th>Kab. hlava</th>
                 <th>Výstupy / Edituj</th>
+                <th>Odstraň</th>
               </tr>
             </thead>
             <tbody>
@@ -123,6 +147,11 @@
                                 </button> 
                             </form>
                         </td>
+                        <td>
+                            <button class="btn btn-danger w-100" onclick="confirmDelete(this)" data-name="${device.name}" data-id="${device.id}">
+                                Odstraň
+                            </button>
+                        </td>
                     </tr> 
                 </c:forEach>
             </tbody>
@@ -134,11 +163,21 @@
                 <th>Poznámka</th>
                 <th>Kab. hlava</th>
                 <th>Výstupy / Edituj</th>
+                <th>Odstraň</th>
               </tr>
             </tfoot>
         </table>
-            <%--          <%@include file="tables/tableCableHead.jsp" %>    --%>
       </div>
     </main>
+    <script>
+        function confirmDelete(toDel){
+            var name = toDel.getAttribute("data-name");
+            var id = toDel.getAttribute("data-id");
+            if (window.confirm("Odstranit kabelovou hlavu?\nnázvem: "+name+";\nID:          "+id+";")){
+                var odkaz = ("deleteCableHead.jsp?id="+id);
+                window.location=odkaz;    
+            } 
+        } 
+    </script>
   </body>
 </html>

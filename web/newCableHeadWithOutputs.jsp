@@ -30,18 +30,11 @@
     int pomId = newcab.getId();
     newcab = null;
     newcab = moje.appLayer.CableHeadBO.getCableheadByID(pomId);
+    name = newcab.getName();
+    String cableHeadId = newcab.getId().toString();
     HttpSession sess = request.getSession();
     sess.setAttribute("newCableHead", newcab);
-/*  request.setAttribute("newCableHead", newcab);
-    --nepotřené--
-    request.setAttribute("keyA", "TEXT - (A)");
-    request.setAttribute("keyB", "TEXT - (B)");
-*/
-    System.out.println("______________newcab_____________");
-    System.out.println("name= "+newcab.getName()+"; building= "+newcab.getBuilding()+"; note= "+newcab.getNote());
-/*
-    RequestDispatcher rd = request.getRequestDispatcher("newCableHeadInform.jsp");
-    rd.forward(request, response);
-*/
-    response.sendRedirect("newCableHeadInform.jsp");
+
+    String link = ("readCableHeads.jsp?type=new&name="+name+"&exportId="+cableHeadId);
+    response.sendRedirect(link);
 %>

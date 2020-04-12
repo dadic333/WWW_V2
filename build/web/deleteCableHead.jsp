@@ -60,8 +60,11 @@ out.println(i);
     if (request.getParameter("id")!=null){
         cabHeadToDelete = moje.appLayer.CableHeadBO.getCableheadByID(id);
         sess.setAttribute("cabHeadToDelete", cabHeadToDelete) ;
+        String name = cabHeadToDelete.getName();
+        String cableHeadId = cabHeadToDelete.getId().toString();
         moje.appLayer.CableHeadBO.deleteCableHeadAndOutpustByCableHead(cabHeadToDelete);
-        response.sendRedirect("readCableHeadsExp.jsp");
+        String link = ("readCableHeads.jsp?type=delete&name="+name+"&exportId="+cableHeadId);
+        response.sendRedirect(link);
     } else response.sendError(001, "Tato kabelová nebyla v databázi nalezena. "
             + "Mohlo dojít k narušení připojení, nebo k problému u databáze. "
             + "Zkuste to pozdějii. Případně zkuste překontrolovat výpis všech kabelových hlav. ");

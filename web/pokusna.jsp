@@ -2,16 +2,17 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <% request.setCharacterEncoding("utf-8"); %>
+        <script>
+            window.alert("WINDOW ALERT");
+        </script>
 <!DOCTYPE html>
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    
     <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
     <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
     <link href="css/formStyl.css" rel="stylesheet">
-
     <title>JSP Page</title>
   </head>
   <body id="body-pozadi">
@@ -87,7 +88,7 @@
     <!-- footer end -->
     <script src="js/jquery-3.3.1.min.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <script src='js/editCableHead.js'></script>
-    <script src="js/deleteCableHead.js"></script>
+    <script src='js/editCableHeadForJS.js'></script>
+    <script src="js/deleteCableHeadForJS.js"></script>
   </body>
 </html>

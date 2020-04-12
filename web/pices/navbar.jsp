@@ -22,9 +22,6 @@
       </li
 -->     
         <li class="nav-item active">
-          <a class="nav-link" href="readCableHeadsExp.jsp">Kabelové hlavy pokusný</a>                                          
-        </li>  
-        <li class="nav-item active">
           <a class="nav-link" href="readCableHeads.jsp">Kabelové hlavy</a>                                          
         </li>                     
         <li class="nav-item ">                         

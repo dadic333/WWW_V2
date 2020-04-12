@@ -28,12 +28,14 @@
             <h3>Úvod</h3>
             <p class="text-justify">
                 Vítej uživateli.
-                <br />
+            </p>
+            <p>
                 Pro práci používej horní navigační lištu.
                 Pokus se co nejméně používat "KROK ZPĚT" v internetovém prohlížeči.<br />
                 Pokud jej použiješ!!!
                 Akce kterou internetový prohlížeč následně vykoná je závislá na daném prohlížeči a jeho nastavení.
-                <br />
+            </p>
+            <p>
                 Přeji bezproblémové užívání.
             </p>
         </div>
