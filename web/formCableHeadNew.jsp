@@ -1,10 +1,5 @@
-<%@page import="moje.appLayer.CableHeadBO"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="java.util.List"%>
-<%@page import="moje.entity.Cablehead"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -25,7 +20,7 @@
     <!-- Navbar START-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar END--> 
-    <div class="d-block fixed-top mt-5 pt-5 rounded">
+    <div class="container-fluid fixed-top mt-5 pt-5 rounded">
         <h1>Vytvoření KABELOVÉ HLAVY</h1>
     </div>
     <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->

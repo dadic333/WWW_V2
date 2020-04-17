@@ -21,24 +21,48 @@
     <title>Telefonní ústředna</title>
   </head>
   <body id="body-pozadi">
+    <%
+      String type = request.getParameter("type");
+      String name = request.getParameter("name");
+      String strId = request.getParameter("exportId");
+    %>
+    <script type="text/javascript">
+        $(document).ready(function() {
+            var type = "<%=type%>";
+            var name = "<%=name%>";
+            var id = "<%=strId%>";
+            var delDev = "delete";
+            var editDev = "edit";
+            var newDev = "new";
+            
+            if(type===delDev){
+                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla vymazána.");
+                alert(string);}
+            if(type===editDev){
+                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla upravena.");
+                alert(string);}
+            if(type===newDev){
+                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla vytvořena.");
+                alert(string);}
+            
+        });
+    </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="d-block fixed-top  mt-5 pt-4 rounded-right">
+    <div class="container-fluid fixed-top mt-5 pt-5">
         <h1>TELEFONNÍ ÚSTŘEDNY</h1>
     </div>
+    <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <div class="container mt-5 mb-3 pt-5 pb-1">
-      <div class="d-flex justify-content-between">
+      <div class="d-flex justify-content-center">
         <a href="formTelExchangeNew.jsp" class="btn btn-info col-4">
           Založit novou telefonní ústřednu
         </a>
-        <a href="formTelExchangeDelete.jsp" class="btn btn-danger col-4">
-          Odstranit telefonní ústřednu
-        </a>
       </div>
     </div>
-    <!-- Výpis telefonních ústředen START -->
-    <div class="container mt-2">
+    <!-- Výpis Telefonních ústředen START -->
+    <div class="container my-5 py-3 rounded-pill bg-light">
         <h2>Výpis telefonní ústředny</h2>
         <form action="formTelExchangeOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
@@ -51,7 +75,7 @@
                     </option>
                 </c:forEach>
             </select>
-            <div class="d-flex justify-content-center my-3" >
+            <div class="d-flex justify-content-center mt-3" >
               <button class="btn btn-dark px-5 py-2 " type="submit" >Vypiš</button>
             </div> 
         </form>
@@ -63,12 +87,13 @@
         <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
             <thead>
               <tr>
-                <th>Index</th>
+                <th>ID</th>
                 <th>Název</th>
                 <th>Budova</th>
                 <th>Poznámka</th>
                 <th>Tel. Exchange</th>
                 <th>Výstupy / Edituj</th>
+                <th>Odstraň</th>
               </tr>
             </thead>
             <tbody>
@@ -101,21 +126,37 @@
                                 </button> 
                             </form>
                         </td>
+                        <td>
+                            <button class="btn btn-danger w-100" onclick="confirmDelete(this)" data-name="${device.name}" data-id="${device.id}">
+                                Odstraň
+                            </button>
+                        </td>
                     </tr> 
                 </c:forEach>
             </tbody>
             <tfoot>
               <tr>
-                <th>Index</th>
+                <th>ID</th>
                 <th>Název</th>
                 <th>Budova</th>
                 <th>Poznámka</th>
                 <th>Tel. Exchange</th>
                 <th>Výstupy / Edituj</th>
+                <th>Odstraň</th>
               </tr>
             </tfoot>
         </table>
       </div>
     </main>
+    <script>
+        function confirmDelete(toDel){
+            var name = toDel.getAttribute("data-name");
+            var id = toDel.getAttribute("data-id");
+            if (window.confirm("Odstranit telefonní ústřednu?\nnázvem: "+name+";\nID:          "+id+";")){
+                var odkaz = ("deleteTelExchange.jsp?id="+id);
+                window.location=odkaz;    
+            } 
+        } 
+    </script>
   </body>
 </html>

@@ -6,26 +6,24 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1"> 
+        <meta name="viewport" content="width=device-width, initial-scale=1">    
         <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
         <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
         <link href="css/styl.css" rel="stylesheet">
-        <link href="css/formStyl.css" rel="stylesheet">
-        <link href="css/editor-tabulek.css" rel="stylesheet">
-        <script src="js/jquery-3.3.1.min.js"></script>
-        <script src="bootstrap/js/bootstrap.min.js"></script>
+        <link href="favs/ico.ico" rel="icon" type="image/x-icon">
+        <script src="js/jquery_3.4.1/jquery.min.js"></script>
         <script src="js/jquery.dataTables.min.js"></script>
         <script src="js/dataTables.bootstrap4.min.js"></script>
         <script src="js/mujTableScript.js"></script>
-        <link href="favs/ico.ico" rel="icon" type="image/x-icon">
+        <script src="bootstrap/js/bootstrap.min.js"></script>
         <title>Kabelová hlava</title>
     </head>
     <body id="body-pozadi">
       <!-- Navbar start-->
       <%@include file="pices/navbar.jsp" %>
       <!-- Navbar end--> 
-      <div class="d-block fixed-top my-5 pt-5 rounded">
+      <div class="container-fluid fixed-top my-5 pt-5 rounded">
         <h1>Editace KABELOVÉ HLAVY</h1>
       </div>
       <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
@@ -52,50 +50,18 @@
                 <div class="d-flex justify-content-between mt-5" >
                   <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
                   <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
-                  <a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>
+                  <button class="btn btn-info col-4 col-sm-3 p-2" type="button" onclick="goToPage(this)" data-page="readCableHeads.jsp">Zpět</button>
+                  <!--<a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>-->
                 </div> 
             </form>
           </div>
       </div>
-<%--         
-      <div class="container-fluid">
-        <form>
-            <div class="form-group">
-                <label for="pokus">form-control-sm:</label>
-                <input type="text" name="pokus" id="pokus" class="form-control form-control-sm" >
-            </div>
-            <div class="form-group">
-                <label for="pokus1">form-control:</label>
-                <input type="text" name="pokus1" id="pokus1" class="form-control" >
-            </div>
-            <div class="form-group">
-                <label for="pokus2">form-control-lg:</label>
-                <input type="text" name="pokus2" id="pokus2" class="form-control form-control-lg" >
-            </div>
-            <div class="form-group">
-                <label for="pokus3">form-control-plaintext:</label>
-                <input type="text" name="pokus3" id="pokus3" class="form-control form-control-plaintext" >
-            </div>
-            <div class="form-group">
-                <label for="pokus4">form-control-file:</label>
-                <input type="text" name="pokus4" id="pokus4" class="form-control form-control-file" >
-            </div>
-            
-          <div class="form-group">
-            <label for="exampleInputEmail1">Email address</label>
-            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
-            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
-          </div>
-          <div class="form-group">
-            <label for="exampleInputPassword1">Password</label>
-            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-          </div>
-          <div class="form-check">
-            <input type="checkbox" class="form-check-input" id="exampleCheck1">
-            <label class="form-check-label" for="exampleCheck1">Check me out</label>
-          </div>
-          <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
-      </div>--%>
+      <script>
+          function goToPage(data){
+              var page = data.getAttribute("data-page");
+              var odkaz = (page);
+              window.location=odkaz;    
+          } 
+      </script>
     </body>
 </html>

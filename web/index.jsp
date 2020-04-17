@@ -20,7 +20,7 @@
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="d-block fixed-top pt-5 my-5 rounded">
+    <div class="container-fluid fixed-top pt-5 my-5 rounded">
         <h1>KABELOVÁ KNIHA</h1>
     </div>
     <div class="container my-5 pt-5 justify-content-center">

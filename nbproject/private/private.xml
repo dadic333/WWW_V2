@@ -4,12 +4,18 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/editCableHeadOutput.jsp</file>
-            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/js/editCableHeadForJS.js</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readCableHeads.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/formCableHeadOutput.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readCableHeadOutputs.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/formCableHeadNew.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/formCableHeadEdit.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/editCableHeadForm.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/pokusna.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/css/styl.css</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/js/editCableHeadForJS.js</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readDataDeviceOutputs.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readDataDevices.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/index.jsp</file>
         </group>
     </open-files>
 </project-private>

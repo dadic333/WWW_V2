@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -11,8 +10,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
-    <link href="css/formStyl.css" rel="stylesheet">
-    <link href="css/editor-tabulek.css" rel="stylesheet">
     <link href="favs/ico.ico" rel="icon" type="image/x-icon">
     <script src="js/jquery_3.4.1/jquery.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
@@ -27,7 +24,7 @@
       String name = request.getParameter("name");
       String strId = request.getParameter("exportId");
     %>
-    <script type="text/javascript">
+    <script>
         $(document).ready(function() {
             var type = "<%=type%>";
             var name = "<%=name%>";
@@ -35,41 +32,29 @@
             var delDev = "delete";
             var editDev = "edit";
             var newDev = "new";
+            var string;
             
             if(type===delDev){
-                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla vymazána.");
+                string = ("VYMAZÁNA kabelová hlava jménem:  "+name+";   ID: "+id+"  .");
                 alert(string);}
             if(type===editDev){
-                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla upravena.");
-                alert(string);}
+                var entity = ("<div class=\"container py-3 my-2 message\" id=\"message\">\"UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id+"  .");
+                document.getElementById("message").innerHTML = entity;}
             if(type===newDev){
-                var string = ("Kabelová hlava jménem: "+name+"; ID: "+id+"; byla vytvořena.");
-                alert(string);}
+                var entity = ("<div class=\"container py-3 my-2 message\" id=\"message\">\"VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id+"\"</div>");
+                string = ("VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id+"  .");
+                document.getElementById("message").innerHTML = entity;}
             
         });
     </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <%--
-    <div class="container sticky-top mt-4">
-
-        <h1 style="position: absolute; top: 80px; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">KABELOVÉ HLAVY - Výpis</h1>
-    </div>    
-    --%>
     <div class="container-fluid fixed-top mt-5 pt-5">
         <h1>KABELOVÉ HLAVY</h1>
     </div>
     <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
-<!-- fixování nadpisu
-    <div class="rounded-bottom bg-white fixed-top mt-5"><h1>Odstavec.</h1></div>
-
-    <h1 style="position:fixed; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">Editace KABELOVÉ HLAVY</h1>
-
-    <div class="container-fluid">
-        <h1 style="position:fixed; background-color: #B0BED9; z-index: 3; border-radius: 0.9rem;">Vytvořená kabelová hlava</h1>
-    </div>
--->
     <div class="container mt-5 mb-3 pt-5 pb-1">
       <div class="d-flex justify-content-center">
         <a href="formCableHeadNew.jsp" class="btn btn-info col-4">
@@ -77,22 +62,15 @@
         </a>
       </div>
     </div>
+    <!-- Výpis Kabelové Hlavy START --> 
     <div class="container my-5 py-3 rounded-pill bg-light">
-<!--
-    <div class="container my-5">
-    <div class="container my-5 py-3 rounded-lg" style="background-color: whitesmoke">
-    <div class="container my-5 py-3 rounded-pill" style="background-color: whitesmoke">
--->
-        <!-- Výpis Kabelové Hlavy START -->
         <h2>Výpis kabelové hlavy</h2>
         <form action="readCableHeadOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
                 <option value="">--- Vyber kabelovou hlavu pro výpis ---</option>
                 <c:forEach var="item" items="<%=moje.appLayer.CableHeadBO.getAllCableHeads()%>">
                     <option value="${item.id}">
-                        ID:&nbsp&nbsp&nbsp  ${item.id};&nbsp&nbsp&nbsp&nbsp&nbsp;
-                        NÁZEV:&nbsp&nbsp&nbsp  ${item.name};&nbsp&nbsp&nbsp&nbsp&nbsp;
-                        UMÍSTĚNÍ:&nbsp&nbsp&nbsp  ${item.building};
+                        ID:&nbsp;${item.id}; <pre>NÁZEV:&nbsp;${item.name}; <pre>UMÍSTĚNÍ:&nbsp;${item.building};
                     </option>
                 </c:forEach>
             </select>
@@ -104,7 +82,13 @@
     <!-- Výpis Kabelové Hlavy END -->  
     <main> 
       <h2>Výpis kabelových hlav</h2>
-      <div class="container mb-3">
+      <div id="message"></div>
+<!--      
+      <div class="container py-3 my-2">
+          <div class="message" id="message"></div>
+      </div>
+-->      
+    <div class="container mb-3">
         <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
             <thead>
               <tr>
@@ -173,7 +157,7 @@
         function confirmDelete(toDel){
             var name = toDel.getAttribute("data-name");
             var id = toDel.getAttribute("data-id");
-            if (window.confirm("Odstranit kabelovou hlavu?\nnázvem: "+name+";\nID:          "+id+";")){
+            if (window.confirm("Odstranit kabelovou hlavu jménem:   "+name+";   ID: "+id+"  ?")){
                 var odkaz = ("deleteCableHead.jsp?id="+id);
                 window.location=odkaz;    
             } 

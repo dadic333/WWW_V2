@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="error.jsp" %>
 <%    
     HttpSession sess = request.getSession();
@@ -13,7 +12,6 @@
     } else{
         dataDevice = (moje.entity.Datadevice)(request.getSession().getAttribute("sessDataDevice"));
     }
-
 %>
 <!DOCTYPE html>
 <html>
@@ -32,44 +30,53 @@
     <script src="js/dataTables.bootstrap4.min.js"></script>
     <script src="js/mujTableScript.js"></script>
     <script src="bootstrap/js/bootstrap.min.js"></script>
-    <title>Kabelová hlava</title>
+    <title>Datový prvek</title>
   </head>
   <body id="body-pozadi">
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="d-block fixed-top mt-5 pt-4">
-        <h1>Výstupy KABELOVÉ HLAVY - Editace</h1>
+    <div class="d-block fixed-top mt-5 pt-5">
+        <h1>Výstupy DATOVÉHO PRVKU - Editace</h1>
     </div>
-    <div class="container my-4 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
+    <div class="container my-5 py-4"></div> <!-- výplň pro odstavení hlavního nadpisu -->
+    <div class="container">
+        <div class="d-flex pt-1 justify-content-end">
+            <a href="readDataDevices.jsp" class="btn btn-info">Zpět</a>
+        </div>
+    </div>
 <%--    <%@include file="tables/tableCableHeadOutputs.jsp" %>  --%>
-      <div class="container my-5 py-5">
+    <div class="container my-4 py-1">
         <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Kabelová hlava</th>
-              <th>Výstup</th>
-              <th>Tel. číslo</th>
-              <th>Poznámka</th>
-              <th></th>
-            </tr>
-          </thead>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Datový prvek</th>
+                <th>Výstup</th>
+                <th>Tel. číslo</th>
+                <th>MAC</th>
+                <th>Poznámka</th>
+                <th>Uprav</th>
+              </tr>
+            </thead>
           <tbody>
               <c:set var="outputs" value="<%=dataDevice.getDataoutputList() %>" />
               <c:forEach var="output" items="${outputs}">
                   <tr class="edit" data-bindID="${output.id}"> 
                     <td>
-                      ${output.id}
+                        ${output.id}
                     </td>
                     <td>
-                        ${output.cableheadId.name}
+                        ${output.deviceId.name}
                     </td>
                     <td>
-                        ${output.cabheadout}
+                        ${output.datadevout}
                     </td>
                     <td>
                         ${output.phonenumber}
+                    </td>
+                    <td>
+                        ${output.mac}
                     </td>
                     <td>
                         ${output.note}
@@ -77,23 +84,29 @@
                     <td>
                         <form action="formCableHeadOutput.jsp" method="get">
                             <input name="id" value='${output.id}' type="hidden" />
-                            <button class="btn btn-dark px-5" type="submit" >Uprav</button>
+                            <button class="btn btn-dark w-100" type="submit" >Uprav</button>
                         </form>
                     </td>
                   </tr> 
               </c:forEach>
           </tbody>
-          <tfoot>
-            <tr>
-              <th>ID</th>
-              <th>Kabelová hlava</th>
-              <th>Výstup</th>
-              <th>Tel. číslo</th>
-              <th>Poznámka</th>
-              <th></th>
-            </tr>
-          </tfoot>
+        <tfoot>
+          <tr>
+            <th>ID</th>
+            <th>Datový prvek</th>
+            <th>Výstup</th>
+            <th>Tel. číslo</th>
+            <th>MAC</th>
+            <th>Poznámka</th>
+            <th>Uprav</th>
+          </tr>
+        </tfoot>
       </table>
+    </div>
+    <div class="container">
+        <div class="d-flex my-3 justify-content-end">
+            <a href="readDataDevices.jsp" class="btn btn-info">Zpět</a>
+        </div>
     </div>
   </body>
 </html>

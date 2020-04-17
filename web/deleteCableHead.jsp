@@ -55,11 +55,9 @@ out.println(i);
 
     Integer id = Integer.parseInt(request.getParameter("id"));
     moje.entity.Cablehead cabHeadToDelete = null;
-    HttpSession sess = request.getSession();
   
     if (request.getParameter("id")!=null){
         cabHeadToDelete = moje.appLayer.CableHeadBO.getCableheadByID(id);
-        sess.setAttribute("cabHeadToDelete", cabHeadToDelete) ;
         String name = cabHeadToDelete.getName();
         String cableHeadId = cabHeadToDelete.getId().toString();
         moje.appLayer.CableHeadBO.deleteCableHeadAndOutpustByCableHead(cabHeadToDelete);

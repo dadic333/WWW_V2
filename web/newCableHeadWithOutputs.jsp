@@ -20,7 +20,7 @@
     String note = request.getParameter("note");
     System.out.println("note = "+note);
     String outputCountS = request.getParameter("outputCount");
-    int outputCount = Integer.parseInt(outputCountS);
+    Integer outputCount = Integer.parseInt(outputCountS);
     System.out.println("output Count = "+outputCount);
 
     System.out.println("ZÍSKÁNÍ PARAMETRŮ - END");
