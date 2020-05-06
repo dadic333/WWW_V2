@@ -10,22 +10,30 @@
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
 
-    HttpSession sess = request.getSession();
-
+    Integer intId = null;
+    String sphone = request.getParameter("phonenumber");
+    Integer phonenumber = null;
+    
     if(request.getParameter("id")!=null){
-        Integer intId = Integer.parseInt(request.getParameter("id"));
+        intId = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id", intId);
-        Integer phonenumber = Integer.parseInt(request.getParameter("phonenumber"));
+        
+        if(sphone.isEmpty()){
+            phonenumber = null;
+        } else { phonenumber = Integer.parseInt(sphone);}
+
         String note  = request.getParameter("note");
 
-        moje.entity.Cabheadoutput cabHeadOut = moje.appLayer.CabHeadOutputBO.editCabHeadOutput (intId, note, phonenumber); 
+        moje.entity.Cabheadoutput cabHeadOut = moje.appLayer.CabHeadOutputBO.findCableHeadOutputById(intId);
+        cabHeadOut = moje.appLayer.CabHeadOutputBO.editCabHeadOutput (intId, note, phonenumber);
+        String name = cabHeadOut.getCabheadout().toString();
+        Integer cabHeadId = cabHeadOut.getCableheadId().getId();
 
 
-        sess.setAttribute("sessCabHead", cabHeadOut.getCableheadId()) ;
-        
-        response.sendRedirect("readCableHeadOutputs.jsp");
+        String link = ("readCableHeadOutputs.jsp?type=edit&name="+name+"&id="+cabHeadId);
+        response.sendRedirect(link);
     }
-    /*              
+/*              
     moje.entity.Cabheadoutput out = moje.appLayer.CabHeadOutputBO.findCableHeadOutputById(intId);
     moje.entity.Cablehead cab  =  out.getCableheadId();            
     HttpSession sess = request.getSession();
@@ -37,16 +45,16 @@
     newcab = moje.appLayer.CableHeadBO.getCableheadByID(pomId);
     HttpSession sess = request.getSession();
     sess.setAttribute("newCableHead", newcab);
-    */ 
-    
+*/ 
 // novinka start
+    HttpSession sess = request.getSession();
     if (request.getParameter("phoneNumber")!=null){
         Integer phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
         sess.setAttribute("phoneNumber", phoneNumber);
         response.sendRedirect("findPhoneNumber.jsp");
     }
 //novinka konec
-    
+
     response.sendRedirect("index.jsp");
 
     /*   

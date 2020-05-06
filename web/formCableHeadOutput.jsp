@@ -1,13 +1,14 @@
-<%@page import="moje.entity.Cabheadoutput"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="error.jsp" %>
 <%    
+    request.setCharacterEncoding("UTF-8");
+    response.setCharacterEncoding("UTF-8");
+    
     Integer intId = Integer.parseInt(request.getParameter("id"));
    
-    moje.entity.Cabheadoutput cabHeadOutput = moje.appLayer.CabHeadOutputBO.findCableHeadOutputById(intId);
-    moje.entity.Cablehead cabHead = cabHeadOutput.getCableheadId();
+    moje.entity.Cabheadoutput cabHeadOutput = moje.appLayer.CabHeadOutputBO.findCableHeadOutputById(intId); // výstup
+    moje.entity.Cablehead cabHead = cabHeadOutput.getCableheadId();                                         // vlastník výstupu
 %>
 <c:set var="idSess" scope="session" value="<%=intId%>"/>
 <!DOCTYPE html>
@@ -31,8 +32,8 @@
       <!-- Navbar start-->
       <%@include file="pices/navbar.jsp" %>
       <!-- Navbar end--> 
-      <div class="container-fluid fixed-top mt-5 pt-5 rounded">
-          <h1>Editace výstupy KABELOVÉ HLAVY</h1>
+      <div class="container fixed-top mt-5 pt-5 rounded">
+          <h2>Editace výstupu KABELOVÉ HLAVY</h2>
       </div>
       <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
       <div class="container mt-5 py-5">
@@ -40,8 +41,8 @@
         <form action="editCableHeadOutput.jsp" method="get"> <!-- <form action="editCableHeadOutputs.jsp" method="get"> -->
           <input name="id" value="${output.id}" type="hidden" />  
           <div class="form-group">
-              <label for="cableHeadName" class="item1">Kabelová hlava</label>
-              <input class="form-control" name="name" id="cableHeadName" value='${output.cableheadId.name}' type="text" readonly />
+              <label for="name" class="item1">Kabelová hlava</label>
+              <input class="form-control" name="name" id="name" value='${output.cableheadId.name}' type="text" readonly />
           </div>
           <div class="form-group">
               <label for="poradiVystupu" class="item1">Výstup</label>
@@ -49,7 +50,7 @@
           </div>
           <div class="form-group">
               <label for="telCislo" class="item1">Telefonní číslo</label>
-              <input class="form-control" type="tel" name="phonenumber" value="${output.phonenumber}" required pattern="[0-9]{1,9}" title="Telefonní číslo má 1 - 9 číslic." />
+              <input class="form-control" type="tel" name="phonenumber" id="telCislo" value="${output.phonenumber}" pattern="[0-9]{1,9}" title="Telefonní číslo má 1 - 9 číslic." />
           </div>
           <div class="form-group">
               <label for="note" class="item1">Poznámka:</label>
@@ -58,7 +59,7 @@
           <div class="d-flex justify-content-between mt-5" >
               <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
               <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
-              <button class="btn btn-info col-4 col-sm-3 p-2" onclick="goToCableHead(this)" data-id="<%=cabHead.getId()%>">Zpět</button>
+              <button class="btn btn-info col-4 col-sm-3 p-2" onclick="goToCableHead(this)" data-id="<%=cabHead.getId()%>" type="button">Zpět</button>
           </div>
         </form>
       </div>

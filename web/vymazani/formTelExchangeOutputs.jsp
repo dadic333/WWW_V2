@@ -41,10 +41,10 @@
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <h1>Výstupy Telefonní ústředny - Editace</h1>
+    <h2>Výstupy Telefonní ústředny - Editace</h2>
     <!-- vytvoření telefonní karty START -->  
     <div class="container">
-      <h2>Přidání telefonní karty k ústředně</h2>
+      <h3>Přidání telefonní karty k ústředně</h3>
       <form action="newTelExchangeCard.jsp" method="get">
           <div class="form-group">
               <c:set var="telEx" value="<%=telExchange%>" /> <%--název ústředny--%>

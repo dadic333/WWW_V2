@@ -19,7 +19,7 @@ var CABLE = {
   }
 };
   
-$(document).ready(function() {
+$(document).ready(function(){
   $("#sendData").click(function(){  
   var tr = $(this).parents("tr");
   var id = tr.attr("data-bindID").val();

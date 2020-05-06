@@ -1,7 +1,9 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error.jsp" %>
 <% request.setCharacterEncoding("utf-8"); %>
-<%
+<% 
+    HttpSession sess = request.getSession();
+    sess.removeAttribute("cabHeadItem");
 //Získání parametrů z formuláře
     Integer id = Integer.parseInt(request.getParameter("id"));
     String name = request.getParameter("name");
@@ -9,8 +11,7 @@
     String note  = request.getParameter("note");
 //Zpracování nových dat
     moje.appLayer.CableHeadBO.editCableHead(id, name, building, note);
-    HttpSession sess = request.getSession();
-    sess.setAttribute("newCableHead", moje.appLayer.CableHeadBO.getCableheadByID(id));
+    sess.setAttribute("cabHeadItem", moje.appLayer.CableHeadBO.getCableheadByID(id));
     
     String cableHeadId = id.toString();
     String link = ("readCableHeads.jsp?type=edit&name="+name+"&exportId="+cableHeadId);

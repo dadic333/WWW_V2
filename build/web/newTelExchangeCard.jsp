@@ -7,11 +7,8 @@
     Integer id = Integer.parseInt(request.getParameter("id"));
     Integer outputCount = Integer.parseInt(request.getParameter("outputCount"));
 
-    moje.entity.Telexchange telExchange = moje.appLayer.TelExchangeBO.getTelExchangeByID(id);
     moje.appLayer.HwPositionBO.addTelExchangeHwPositions(id, outputCount);
-    
-    HttpSession sess = request.getSession();
-    sess.setAttribute("sessTelExchange", telExchange);
-    
-    response.sendRedirect("formTelExchangeOutputs.jsp");
+
+    String link = ("readTelExchangeOutputs.jsp?type=addCard&outputCount="+outputCount+"&id="+id);
+    response.sendRedirect(link);
 %>

@@ -36,7 +36,6 @@ Integer i = Integer.parseInt(sid2.toString());
 out.println(i);
 */
 --%>
-
 <%
 /* 
     Integer id = Integer.parseInt(request.getParameter("id"));
@@ -52,19 +51,18 @@ out.println(i);
 %>
 
 <%
-
     Integer id = Integer.parseInt(request.getParameter("id"));
     moje.entity.Cablehead cabHeadToDelete = null;
+    HttpSession sess = request.getSession();
+    sess.removeAttribute("cabHeadItem");
   
     if (request.getParameter("id")!=null){
         cabHeadToDelete = moje.appLayer.CableHeadBO.getCableheadByID(id);
-        String name = cabHeadToDelete.getName();
-        String cableHeadId = cabHeadToDelete.getId().toString();
         moje.appLayer.CableHeadBO.deleteCableHeadAndOutpustByCableHead(cabHeadToDelete);
-        String link = ("readCableHeads.jsp?type=delete&name="+name+"&exportId="+cableHeadId);
+        sess.setAttribute("cabHeadItem", cabHeadToDelete);
+        String link = ("readCableHeads.jsp?type=delete");
         response.sendRedirect(link);
     } else response.sendError(001, "Tato kabelová nebyla v databázi nalezena. "
             + "Mohlo dojít k narušení připojení, nebo k problému u databáze. "
             + "Zkuste to pozdějii. Případně zkuste překontrolovat výpis všech kabelových hlav. ");
-
 %>

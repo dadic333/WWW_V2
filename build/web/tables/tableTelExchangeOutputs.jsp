@@ -24,7 +24,7 @@
                       <div>
                           ${output.name}
                       </div>
-                          <input name="name" type="text" value='${output.name}' required maxlength="59" />
+                          <input name="name" type="text" value='${output.name}' required maxlength="10" />
                   </td>
                   <td>
                       <div>

@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
-    <link href="css/formStyl.css" rel="stylesheet">
-    <link href="css/editor-tabulek.css" rel="stylesheet">
     <link href="favs/ico.ico" rel="icon" type="image/x-icon">
     <script src="js/jquery_3.4.1/jquery.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
@@ -22,39 +20,51 @@
   </head>
   <body id="body-pozadi">
     <%
-      String type = request.getParameter("type");
-      String name = request.getParameter("name");
-      String strId = request.getParameter("exportId");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String type = null;
+        String name = null;
+        String strId = null;
+        moje.entity.Datadevice dataDevice;
+        HttpSession sess = request.getSession();
+        type = request.getParameter("type");
+        name = request.getParameter("name");
+        strId = request.getParameter("exportId");
+
+        if(sess.getAttribute("dataDeviceItem")!= null){
+        dataDevice = (moje.entity.Datadevice)sess.getAttribute("dataDeviceItem");
+        strId = dataDevice.getId().toString();
+        name = dataDevice.getName().toString();
+        }        
     %>
     <script type="text/javascript">
         $(document).ready(function() {
             var type = "<%=type%>";
             var name = "<%=name%>";
             var id = "<%=strId%>";
-            var delDev = "delete";
-            var editDev = "edit";
-            var newDev = "new";
+            var string;
             
-            if(type===delDev){
-                var string = ("Datový prvek jménem: "+name+"; ID: "+id+"; byl vymazán.");
-                alert(string);}
-            if(type===editDev){
-                var string = ("Datový prvek jménem: "+name+"; ID: "+id+"; byl upraven.");
-                alert(string);}
-            if(type===newDev){
-                var string = ("Datový prvek jménem: "+name+"; ID: "+id+"; byl vytvořen.");
-                alert(string);}
-            
+            if(type==="delete"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYMAZÁN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("VYMAZÁN datový prvek jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;} //alert(string);}
+            if(type==="edit"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"UPRAVEN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
+            if(type==="new"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYTVOŘEN datový prvek jménem: "+name+";   ID: "+id+"\"</div>");
+                string = ("VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
         });
     </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="container-fluid fixed-top mt-5 pt-5">
-        <h1>DATOVÉ PRVKY</h1>
+    <div class="container fixed-top mt-5 pt-5">
+        <h2>DATOVÉ PRVKY</h2>
     </div>
     <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
-
     <div class="container mt-5 mb-3 pt-5 pb-1">
       <div class="d-flex justify-content-center">
         <a href="formDataDeviceNew.jsp" class="btn btn-info col-4">
@@ -64,28 +74,27 @@
     </div>
     <!-- Výpis Datového prvku START -->
     <div class="container my-5 py-3 rounded-pill bg-light">
-        <h2>Výpis datového prvku</h2>
-        <form action="formDataDeviceOutputs.jsp" method="get">
+        <h3>Výpis datového prvku</h3>
+        <form action="readDataDeviceOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
                 <option value="">--- Vyber datový prvek pro výpis ---</option>
                 <c:forEach var="item" items="<%=moje.appLayer.DataDeviceBO.getAllDataDevices()%>">
                     <option value="${item.id}">
-                        ID:&nbsp&nbsp&nbsp  ${item.id};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        NÁZEV:&nbsp&nbsp&nbsp  ${item.name};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        UMÍSTĚNÍ:&nbsp&nbsp&nbsp  ${item.building}
+                        ID:&nbsp;${item.id}&nbsp;&nbsp;&nbsp;NÁZEV:&nbsp;${item.name}&nbsp;&nbsp;&nbsp;UMÍSTĚNÍ:&nbsp;${item.building};
                     </option>
                 </c:forEach>
             </select>
-            <div class="d-flex justify-content-center my-3" >
+            <div class="d-flex justify-content-center mt-3" >
               <button class="btn btn-dark px-5 py-2 " type="submit" >Vypiš</button>
             </div> 
         </form>
     </div>
     <!-- Výpis Kabelové Hlavy END -->  
     <main> 
-      <h2>Výpis datových prvků</h2>
+      <h3>Výpis datových prvků</h3>
+      <div id="message"></div>
       <div class="container mb-3">
-        <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
+        <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
                 <th>ID</th>
@@ -98,7 +107,7 @@
               </tr>
             </thead>
             <tbody>
-                <c:set var="devices" value="<%= moje.appLayer.DataDeviceBO.getAllDataDevices()%>"/>
+                <c:set var="devices" value="<%= moje.appLayer.DataDeviceBO.getAllDataDevices() %>"/>
                 <c:forEach var="device" items="${devices}">
                     <tr> 
                         <td>
@@ -153,7 +162,7 @@
         function confirmDelete(toDel){
             var name = toDel.getAttribute("data-name");
             var id = toDel.getAttribute("data-id");
-            if (window.confirm("Odstranit datový prvek?\nnázvem: "+name+";\nID:          "+id+";")){
+            if (window.confirm("Odstranit datový prvek jmémen:   "+name+";   ID: "+id+"  ?")){
                 var odkaz = ("deleteDataDevice.jsp?id="+id);
                 window.location=odkaz;    
             } 

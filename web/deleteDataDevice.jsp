@@ -3,13 +3,15 @@
 <%
     Integer id = Integer.parseInt(request.getParameter("id"));
     moje.entity.Datadevice dataDevToDelete = null;
+    
+    HttpSession sess = request.getSession();
+    sess.removeAttribute("dataDeviceItem");
   
     if (request.getParameter("id")!=null){
         dataDevToDelete = moje.appLayer.DataDeviceBO.getDataDeviceByID(id);
-        String name = dataDevToDelete.getName();
-        String dataDeviceId = dataDevToDelete.getId().toString();
         moje.appLayer.DataDeviceBO.deleteDataDeviceAndOutpust(dataDevToDelete);
-        String link = ("readDataDevices.jsp?type=delete&name="+name+"&exportId="+dataDeviceId);
+        sess.setAttribute("dataDeviceItem", dataDevToDelete);
+        String link = ("readDataDevices.jsp?type=delete");
         response.sendRedirect(link);   
     } else response.sendError(001, "Tento datový prvek nebyl v databázi nalezen. "
             + "Mohlo dojít k narušení připojení, nebo k problému u databáze. "

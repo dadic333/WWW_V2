@@ -1,6 +1,5 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@page errorPage="error.jsp" %>
 <!DOCTYPE html>
 <html>
@@ -23,8 +22,8 @@
       <!-- Navbar start-->
       <%@include file="pices/navbar.jsp" %>
       <!-- Navbar end--> 
-      <div class="container-fluid fixed-top my-5 pt-5 rounded">
-        <h1>Editace KABELOVÉ HLAVY</h1>
+      <div class="container fixed-top my-5 pt-5 rounded">
+        <h2>Editace KABELOVÉ HLAVY</h2>
       </div>
       <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
       <div class="container mt-5 py-5">
@@ -45,13 +44,12 @@
                 </div>
                 <div class="form-group">
                     <label for="note" class="item1">Poznámka:</label>
-                    <input class="form-control" name="note" id="note" type="text" value='${device.note}' required maxlength="149" />
+                    <input class="form-control" name="note" id="note" type="text" value='${device.note}' maxlength="149" />
                 </div>
                 <div class="d-flex justify-content-between mt-5" >
                   <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
                   <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
                   <button class="btn btn-info col-4 col-sm-3 p-2" type="button" onclick="goToPage(this)" data-page="readCableHeads.jsp">Zpět</button>
-                  <!--<a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>-->
                 </div> 
             </form>
           </div>

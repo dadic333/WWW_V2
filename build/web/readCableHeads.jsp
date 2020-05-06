@@ -5,7 +5,8 @@
 <html>
     <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">    
+    <meta name="viewport" content="width=device-width, initial-scale=1">  
+    <meta charset="UTF-8">
     <link href="bootstrap/css/bootstrap-grid.min.css" rel="stylesheet">
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -20,39 +21,49 @@
   </head>
   <body id="body-pozadi">
     <%
-      String type = request.getParameter("type");
-      String name = request.getParameter("name");
-      String strId = request.getParameter("exportId");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String type = null;
+        String name = null;
+        String strId = null;
+        moje.entity.Cablehead cableHead;
+        HttpSession sess = request.getSession();
+        type = request.getParameter("type");
+        name = request.getParameter("name");
+        strId = request.getParameter("exportId"); 
+
+        if(sess.getAttribute("cabHeadItem")!= null){
+        cableHead = (moje.entity.Cablehead)sess.getAttribute("cabHeadItem");
+        strId = cableHead.getId().toString();
+        name = cableHead.getName().toString();
+        }   
     %>
     <script>
-        $(document).ready(function() {
+        $(document).ready(function(){
             var type = "<%=type%>";
             var name = "<%=name%>";
             var id = "<%=strId%>";
-            var delDev = "delete";
-            var editDev = "edit";
-            var newDev = "new";
             var string;
             
-            if(type===delDev){
-                string = ("VYMAZÁNA kabelová hlava jménem:  "+name+";   ID: "+id+"  .");
-                alert(string);}
-            if(type===editDev){
-                var entity = ("<div class=\"container py-3 my-2 message\" id=\"message\">\"UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id+"\"</div>");
-                string = ("UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id+"  .");
+            if(type==="delete"){
+                var entity = ("<div class=\"container py-1 my-1 message\" id=\"message\">\"VYMAZÁNA kabelová hlava jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("VYMAZÁNA kabelová hlava jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}  //alert(string);}
+            if(type==="edit"){
+                var entity = ("<div class=\"container py-1 my-1 message\" id=\"message\">\"UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id);
                 document.getElementById("message").innerHTML = entity;}
-            if(type===newDev){
-                var entity = ("<div class=\"container py-3 my-2 message\" id=\"message\">\"VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id+"\"</div>");
-                string = ("VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id+"  .");
+            if(type==="new"){
+                var entity = ("<div class=\"container py-1 my-1 message\" id=\"message\">\"VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id+"\"</div>");
+                string = ("VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id);
                 document.getElementById("message").innerHTML = entity;}
-            
         });
     </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="container-fluid fixed-top mt-5 pt-5">
-        <h1>KABELOVÉ HLAVY</h1>
+    <div class="container fixed-top mt-5 pt-5">
+        <h2>KABELOVÉ HLAVY</h2>
     </div>
     <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <div class="container mt-5 mb-3 pt-5 pb-1">
@@ -64,13 +75,13 @@
     </div>
     <!-- Výpis Kabelové Hlavy START --> 
     <div class="container my-5 py-3 rounded-pill bg-light">
-        <h2>Výpis kabelové hlavy</h2>
+        <h3>Výpis kabelové hlavy</h3>
         <form action="readCableHeadOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
                 <option value="">--- Vyber kabelovou hlavu pro výpis ---</option>
                 <c:forEach var="item" items="<%=moje.appLayer.CableHeadBO.getAllCableHeads()%>">
                     <option value="${item.id}">
-                        ID:&nbsp;${item.id}; <pre>NÁZEV:&nbsp;${item.name}; <pre>UMÍSTĚNÍ:&nbsp;${item.building};
+                        ID:&nbsp;${item.id}&nbsp;&nbsp;&nbsp;NÁZEV:&nbsp;${item.name}&nbsp;&nbsp;&nbsp;UMÍSTĚNÍ:&nbsp;${item.building};
                     </option>
                 </c:forEach>
             </select>
@@ -81,7 +92,7 @@
     </div>
     <!-- Výpis Kabelové Hlavy END -->  
     <main> 
-      <h2>Výpis kabelových hlav</h2>
+      <h3>Výpis kabelových hlav</h3>
       <div id="message"></div>
 <!--      
       <div class="container py-3 my-2">
@@ -89,7 +100,7 @@
       </div>
 -->      
     <div class="container mb-3">
-        <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
+        <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
                 <th>ID</th>

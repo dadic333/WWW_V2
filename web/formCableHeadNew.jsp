@@ -20,8 +20,8 @@
     <!-- Navbar START-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar END--> 
-    <div class="container-fluid fixed-top mt-5 pt-5 rounded">
-        <h1>Vytvoření KABELOVÉ HLAVY</h1>
+    <div class="container fixed-top mt-5 pt-5 rounded">
+        <h2>Vytvoření KABELOVÉ HLAVY</h2>
     </div>
     <div class="container my-5 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <!-- vytvoření kabelové hlavy START -->  
@@ -37,19 +37,26 @@
           </div>
           <div class="form-group">
             <label for="note" class="item1">Poznámka:</label>
-            <input class="item1 form-control" name="note" id="note" type="text" placeholder="zadej např. '1NP, dv. 1, funkčních páry 1-30'" required maxlength="149" />
+            <input class="item1 form-control" name="note" id="note" type="text" placeholder="zadej např. '1NP, dv. 1, funkčních páry 1-30'" maxlength="149" />
           </div>
           <div class="form-group">
             <label for="outputCount" class="item1">Počet výstupů:</label>
             <input class="item1 form-control" name="outputCount" id="outputCount" type="number" placeholder="zadej počet výstupů" required maxlength="9" min="0" max="999999999" />
           </div>
-        <div class="d-flex justify-content-between mt-5" >
-            <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
-            <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
-            <a href="readCableHeads.jsp" class="btn btn-info col-4 col-sm-3 p-2" type="button">Zpět</a>
-        </div>
+                <div class="d-flex justify-content-between mt-5" >
+                  <button class="btn btn-dark col-4 col-sm-3 p-2" type="submit" >Odešli</button>
+                  <button class="btn btn-danger col-4 col-sm-3 p-2 mx-1" type="reset" >Zruš změny</button>
+                  <button class="btn btn-info col-4 col-sm-3 p-2" type="button" onclick="goToPage(this)" data-page="readCableHeads.jsp">Zpět</button>
+                </div> 
       </form>
     </div>
     <!-- vytvoření kabelové hlavy END -->
+    <script>
+      function goToPage(data){
+          var page = data.getAttribute("data-page");
+          var odkaz = (page);
+          window.location=odkaz;    
+      } 
+    </script>
   </body>
 </html>

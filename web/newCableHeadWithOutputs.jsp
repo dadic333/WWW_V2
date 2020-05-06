@@ -11,6 +11,9 @@
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
 
+    HttpSession sess = request.getSession();
+    sess.removeAttribute("cabHeadItem");
+    
     System.out.println("ZÍSKÁNÍ PARAMETRŮ - START");
 
     String name = request.getParameter("name");
@@ -30,11 +33,12 @@
     int pomId = newcab.getId();
     newcab = null;
     newcab = moje.appLayer.CableHeadBO.getCableheadByID(pomId);
-    name = newcab.getName();
+    name = newcab.getName().toString();
     String cableHeadId = newcab.getId().toString();
-    HttpSession sess = request.getSession();
-    sess.setAttribute("newCableHead", newcab);
+    
+    sess.setAttribute("cabHeadItem", newcab);
 
-    String link = ("readCableHeads.jsp?type=new&name="+name+"&exportId="+cableHeadId);
-    response.sendRedirect(link);
+    String link = ("readCableHeads.jsp?type=new&exportId="+cableHeadId);//("readCableHeads.jsp?type=new&name="+name+"&exportId="+cableHeadId);
+    response.sendRedirect(link); 
 %>
+<jsp:forward page="/readCableHeads.jsp"/>

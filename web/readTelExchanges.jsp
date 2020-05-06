@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
-    <link href="css/formStyl.css" rel="stylesheet">
-    <link href="css/editor-tabulek.css" rel="stylesheet">
     <link href="favs/ico.ico" rel="icon" type="image/x-icon">
     <script src="js/jquery_3.4.1/jquery.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
@@ -22,36 +20,49 @@
   </head>
   <body id="body-pozadi">
     <%
-      String type = request.getParameter("type");
-      String name = request.getParameter("name");
-      String strId = request.getParameter("exportId");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String type = null;
+        String name = null;
+        String strId = null;
+        moje.entity.Telexchange telExchange;
+        HttpSession sess = request.getSession();
+        type = request.getParameter("type");
+        name = request.getParameter("name");
+        strId = request.getParameter("exportId");
+
+        if(sess.getAttribute("telExchangeItem")!= null){
+        telExchange = (moje.entity.Telexchange)sess.getAttribute("telExchangeItem");
+        strId = telExchange.getId().toString();
+        name = telExchange.getName().toString();
+        }        
     %>
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
             var type = "<%=type%>";
             var name = "<%=name%>";
             var id = "<%=strId%>";
-            var delDev = "delete";
-            var editDev = "edit";
-            var newDev = "new";
+            var string;
             
-            if(type===delDev){
-                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla vymazána.");
-                alert(string);}
-            if(type===editDev){
-                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla upravena.");
-                alert(string);}
-            if(type===newDev){
-                var string = ("Telefonní ústředna jménem: "+name+"; ID: "+id+"; byla vytvořena.");
-                alert(string);}
-            
+            if(type==="delete"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYMAZÁNA telefonní ústředna jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("VYMAZÁNA telefonní ústředna jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;} //  alert(string);}
+            if(type==="edit"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"UPRAVENA telefonní ústředna jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("UPRAVENA telefonní ústředna jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
+            if(type==="new"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYTVOŘENA telefonní ústředna jménem: "+name+";   ID: "+id+"\"</div>");
+                string = ("VYTVOŘENA telefonní ústředna jménem: "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
         });
     </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="container-fluid fixed-top mt-5 pt-5">
-        <h1>TELEFONNÍ ÚSTŘEDNY</h1>
+    <div class="container fixed-top mt-5 pt-5">
+        <h2>TELEFONNÍ ÚSTŘEDNY</h2>
     </div>
     <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <div class="container mt-5 mb-3 pt-5 pb-1">
@@ -63,15 +74,13 @@
     </div>
     <!-- Výpis Telefonních ústředen START -->
     <div class="container my-5 py-3 rounded-pill bg-light">
-        <h2>Výpis telefonní ústředny</h2>
-        <form action="formTelExchangeOutputs.jsp" method="get">
+        <h3>Výpis telefonní ústředny</h3>
+        <form action="readTelExchangeOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
                 <option value="">--- Vyber telefonní ústřednu pro výpis ---</option>
                 <c:forEach var="item" items="<%=moje.appLayer.TelExchangeBO.getAllTelExchanges() %>">
                     <option value="${item.id}">
-                        ID:&nbsp&nbsp&nbsp  ${item.id};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        NÁZEV:&nbsp&nbsp&nbsp  ${item.name};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        UMÍSTĚNÍ:&nbsp&nbsp&nbsp  ${item.building}
+                        ID:&nbsp;${item.id}&nbsp;&nbsp;&nbsp;NÁZEV:&nbsp;${item.name}&nbsp;&nbsp;&nbsp;UMÍSTĚNÍ:&nbsp;${item.building};
                     </option>
                 </c:forEach>
             </select>
@@ -82,9 +91,10 @@
     </div>
     <!-- Výpis telefonních ústředen END -->  
     <main> 
-      <h2>Výpis telefonních ústředen</h2>
+      <h3>Výpis telefonních ústředen</h3>
+      <div id="message"></div>
       <div class="container mb-3">
-        <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
+        <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
                 <th>ID</th>
@@ -97,7 +107,7 @@
               </tr>
             </thead>
             <tbody>
-                <c:set var="devices" value="<%= moje.appLayer.TelExchangeBO.getAllTelExchanges()%>"/>
+                <c:set var="devices" value="<%= moje.appLayer.TelExchangeBO.getAllTelExchanges() %>"/>
                 <c:forEach var="device" items="${devices}">
                     <tr> 
                         <td>
@@ -152,7 +162,7 @@
         function confirmDelete(toDel){
             var name = toDel.getAttribute("data-name");
             var id = toDel.getAttribute("data-id");
-            if (window.confirm("Odstranit telefonní ústřednu?\nnázvem: "+name+";\nID:          "+id+";")){
+            if (window.confirm("Odstranit telefonní ústřednu jménem:   "+name+";   ID: "+id+"  ?")){
                 var odkaz = ("deleteTelExchange.jsp?id="+id);
                 window.location=odkaz;    
             } 

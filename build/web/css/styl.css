@@ -11,6 +11,17 @@ h1 {
   background-color: #B0BED9;
   border-radius: 0.9rem;
 }
+h2 {
+  width: 100%;
+  text-align: center;
+  padding-bottom: 0.25em;
+  padding-top:  0.25em;
+  z-index: -1200;
+  background-color: #B0BED9;
+  border: solid 3px;
+  border-color: whitesmoke;
+  border-radius: 0.9rem;
+}
 .message {
     width: 100%;
     font-weight: bolder;
@@ -18,13 +29,26 @@ h1 {
     padding-bottom: 0.25em;
     padding-top:  0.25em;
     background-color: #B0BED9;
-    border: solid 10px;
+    border: solid 8px;
     border-color: whitesmoke;
-    border-radius: 0.9rem;
-    
+    border-radius: 0.9rem;  
 }
 
-h2 {
+.addCard {
+    border: solid 3px;
+    border-color: whitesmoke;
+    border-radius: 2rem;
+}
+
+#tabulka{
+    background-color: #80bdff;
+}
+
+.tabulka_modra{
+    background-color: #80bdff;
+}
+
+h3,h4 {
   width: 100%;
   text-align: center;
   padding-bottom: 0.5em;

@@ -10,8 +10,6 @@
     <link rel="stylesheet" href="bootstrap/css/bootstrap.min.css">
     <link href="css/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="css/styl.css" rel="stylesheet">
-    <link href="css/formStyl.css" rel="stylesheet">
-    <link href="css/editor-tabulek.css" rel="stylesheet">
     <link href="favs/ico.ico" rel="icon" type="image/x-icon">
     <script src="js/jquery_3.4.1/jquery.min.js"></script>
     <script src="js/jquery.dataTables.min.js"></script>
@@ -22,56 +20,67 @@
   </head>
   <body id="body-pozadi">
     <%
-      String type = request.getParameter("type");
-      String name = request.getParameter("name");
-      String strId = request.getParameter("exportId");
+        request.setCharacterEncoding("UTF-8");
+        response.setCharacterEncoding("UTF-8");
+        String type = null;
+        String name = null;
+        String strId = null;
+        moje.entity.Pbx pbx;
+        HttpSession sess = request.getSession();
+        type = request.getParameter("type");
+        name = request.getParameter("name");
+        strId = request.getParameter("exportId");
+
+        if(sess.getAttribute("pbxItem")!= null){
+        pbx = (moje.entity.Pbx)sess.getAttribute("pbxItem");
+        strId = pbx.getId().toString();
+        name = pbx.getName().toString();
+        }        
     %>
-    <script type="text/javascript">
+    <script type="text/javascript" charset="utf-8">
         $(document).ready(function() {
             var type = "<%=type%>";
             var name = "<%=name%>";
             var id = "<%=strId%>";
-            var delDev = "delete";
-            var editDev = "edit";
-            var newDev = "new";
+            var string;
             
-            if(type===delDev){
-                var string = ("PBX jménem: "+name+"; ID: "+id+"; byla vymazána.");
-                alert(string);}
-            if(type===editDev){
-                var string = ("PBX jménem: "+name+"; ID: "+id+"; byla upravena.");
-                alert(string);}
-            if(type===newDev){
-                var string = ("PBX jménem: "+name+"; ID: "+id+"; byla vytvořena.");
-                alert(string);}
-            
+            if(type==="delete"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYMAZÁNA PBX jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("VYMAZÁNA PBX jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;} //  alert(string);}
+            if(type==="edit"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"UPRAVENA PBX jménem:  "+name+";   ID: "+id+"\"</div>");
+                string = ("UPRAVENA PBX jménem:  "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
+            if(type==="new"){
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYTVOŘENA PBX jménem: "+name+";   ID: "+id+"\"</div>");
+                string = ("VYTVOŘENA PBX jménem: "+name+";   ID: "+id);
+                document.getElementById("message").innerHTML = entity;}
         });
     </script>
     <!-- Navbar start-->
     <%@include file="pices/navbar.jsp" %>
     <!-- Navbar end--> 
-    <div class="container-fluid fixed-top mt-5 pt-5">
-        <h1>POBOČKOVÉ ÚSTŘEDNY</h1>
+    <div class="container fixed-top mt-5 pt-5">
+        <h2>PBX</h2>
     </div>
     <div class="container my-3 py-1"></div> <!-- výplně pro odstavení hlavního nadpisu -->
     <div class="container mt-5 mb-3 pt-5 pb-1">
       <div class="d-flex justify-content-center">
         <a href="formPBXNew.jsp" class="btn btn-info col-4">
-          Založit novou pobočkovou ústřednu
+          Založit novou PBX
         </a>
       </div>
     </div>
     <!-- Výpis PBX START -->
     <div class="container my-5 py-3 rounded-pill bg-light">
-        <h2>Výpis PBX</h2>
-        <form action="formPBXOutputs.jsp" method="get">
+        <h3>Výpis PBX</h3>
+        <form action="readPBXOutputs.jsp" method="get">
             <select name="id" class="form-control" required>
-                <option value="">--- Vyber kabelovou hlavu pro výpis ---</option>
+                <option value="">--- Vyber PBX pro výpis ---</option>
                 <c:forEach var="item" items="<%=moje.appLayer.PbxBO.getAllPbx()%>">
                     <option value="${item.id}">
-                        ID:&nbsp&nbsp&nbsp  ${item.id};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        NÁZEV:&nbsp&nbsp&nbsp  ${item.name};&nbsp&nbsp&nbsp&nbsp&nbsp
-                        UMÍSTĚNÍ:&nbsp&nbsp&nbsp  ${item.building}
+                        ID:&nbsp;${item.id}&nbsp;&nbsp;&nbsp;NÁZEV:&nbsp;${item.name}&nbsp;&nbsp;&nbsp;UMÍSTĚNÍ:&nbsp;${item.building};
                     </option>
                 </c:forEach>
             </select>
@@ -82,9 +91,10 @@
     </div>
     <!-- Výpis PBX END -->  
     <main> 
-      <h2>Výpis PBX</h2>
+      <h3>Výpis PBX</h3>
+      <div id="message"></div>
       <div class="container mb-3">
-        <table id="tabulka" class="table table-striped table-bordered compact order-column " style="background-color: #80bdff;">
+        <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
                 <th>ID</th>
@@ -97,7 +107,7 @@
               </tr>
             </thead>
             <tbody>
-                <c:set var="devices" value="<%= moje.appLayer.PbxBO.getAllPbx()%>"/>
+                <c:set var="devices" value="<%= moje.appLayer.PbxBO.getAllPbx() %>"/>
                 <c:forEach var="device" items="${devices}">
                     <tr> 
                         <td>
@@ -152,7 +162,7 @@
         function confirmDelete(toDel){
             var name = toDel.getAttribute("data-name");
             var id = toDel.getAttribute("data-id");
-            if (window.confirm("Odstranit PBX?\nnázvem: "+name+";\nID:          "+id+";")){
+            if (window.confirm("Odstranit PBX jménem:   "+name+";   ID: "+id+"  ?")){
                 var odkaz = ("deletePBX.jsp?id="+id);
                 window.location=odkaz;    
             } 
