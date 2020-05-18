@@ -37,7 +37,7 @@
           </div>
           <div class="form-group">
             <label for="note" class="item1">Poznámka:</label>
-            <input class="item1 form-control" name="note" id="note" type="text" placeholder="zadej např. '1NP, dv. 1, funkčních páry 1-30'" required maxlength="149" />
+            <input class="item1 form-control" name="note" id="note" type="text" placeholder="zadej např. '1NP, dv. 1'" required maxlength="149" />
           </div>
           <div class="form-group">
             <label for="outputCount" class="item1">Počet výstupů:</label>
