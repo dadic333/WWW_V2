@@ -141,9 +141,9 @@ footer {
     
     /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#351e04+9,5f6475+100 */
     background: #351e04; /* Old browsers */
-    background: -moz-linear-gradient(-45deg, #b0bed9ab 70%, #351e04 80%); /* FF3.6-15 */
-    background: -webkit-linear-gradient(-45deg, #b0bed9ab 70%, #351e04 80%); /* Chrome10-25,Safari5.1-6 */
-    background: linear-gradient(135deg, #b0bed9ab 70%, #351e04 80%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    background: -moz-linear-gradient(-45deg, #5f6475 70%, #351e04 80%); /* FF3.6-15 */
+    background: -webkit-linear-gradient(-45deg, #5f6475 70%, #351e04 80%); /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(135deg, #5f6475 70%, #351e04 80%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#351e04', endColorstr='#5f6475',GradientType=1 ); /* IE6-9 fallback on horizontal gradient */
 }
 .navbar-dark .navbar-nav .nav-link {
