@@ -45,15 +45,18 @@
             var string;
             
             if(type==="delete"){
-                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYMAZÁN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\n\
+                                \"VYMAZÁN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
                 string = ("VYMAZÁN datový prvek jménem:  "+name+";   ID: "+id);
                 document.getElementById("message").innerHTML = entity;} //alert(string);}
             if(type==="edit"){
-                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"UPRAVEN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\n\
+                                \"UPRAVEN datový prvek jménem:  "+name+";   ID: "+id+"\"</div>");
                 string = ("UPRAVENA kabelová hlava jménem:  "+name+";   ID: "+id);
                 document.getElementById("message").innerHTML = entity;}
             if(type==="new"){
-                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\"VYTVOŘEN datový prvek jménem: "+name+";   ID: "+id+"\"</div>");
+                var entity = ("<div class=\"container py-1 my-2 message\" id=\"message\">\n\
+                                \"VYTVOŘEN datový prvek jménem: "+name+";   ID: "+id+"\"</div>");
                 string = ("VYTVOŘENA kabelová hlava jménem: "+name+";   ID: "+id);
                 document.getElementById("message").innerHTML = entity;}
         });
@@ -94,6 +97,7 @@
       <h3>Výpis datových prvků</h3>
       <div id="message"></div>
       <div class="container mb-3">
+        <div class="table-responsive">
         <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
@@ -156,6 +160,7 @@
               </tr>
             </tfoot>
         </table>
+        </div>
       </div>
     </main>
     <script>

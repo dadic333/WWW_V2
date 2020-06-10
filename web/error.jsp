@@ -19,7 +19,13 @@
     <!-- Navbar END--> 
     <div class="container pt-5 my-5 rounded">
         <h2>Něco se pokazilo</h2>
-        <a href="index.jsp"><h2>Návrat na úvodní stranu ...</h2></a>
+        <div class="jumbotron h-75">
+            <p>
+                Došlo k chybě připojení k databázi nebo nějaké jiné nepředloženosti.
+                Kontaktujte prosím správce informačního sytému.
+            </p>
+            <a href="index.jsp"><h2>Návrat na úvodní stranu ...</h2></a>
+        </div>
     </div>
     <div class="container-fluid">
     <div style="font-size: large">

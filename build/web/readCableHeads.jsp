@@ -99,7 +99,8 @@
           <div class="message" id="message"></div>
       </div>
 -->      
-    <div class="container mb-3">
+    <div class="container mb-3 ">
+        <div class="table-responsive">
         <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
@@ -162,6 +163,7 @@
               </tr>
             </tfoot>
         </table>
+        </div>
       </div>
     </main>
     <script>

@@ -77,6 +77,7 @@
     </div>
     <div id="message"></div>
     <div class="container my-4 py-1">
+        <div class="table-responsive">
         <table id="tabulka" class="table table-striped table-bordered compact order-column ">
           <thead>
             <tr>
@@ -132,6 +133,7 @@
             </tr>
           </tfoot>
       </table>
+    </div>
     </div>
     <div class="container">
         <div class="d-flex my-3 justify-content-end">

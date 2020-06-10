@@ -7,43 +7,38 @@
 <%
     request.setCharacterEncoding("UTF-8");
     response.setCharacterEncoding("UTF-8");
-    
+
     Integer intId = null;
     String sphone = request.getParameter("phonenumber");
     Integer phonenumber = null;
-    
-    if(request.getParameter("id")!=null){
+
+    if (request.getParameter("id") != null) {
         intId = Integer.parseInt(request.getParameter("id"));
         request.setAttribute("id", intId);
-        
-        if(sphone.isEmpty()){
-            phonenumber = null;
-        } else { phonenumber = Integer.parseInt(sphone);}
 
-        String note  = request.getParameter("note");
+        if (sphone.isEmpty()) {   // ošetření, aby phonenumber mohl nabývat      
+            phonenumber = null;   // hodnoty null, pokud nebyl input vyplněn
+        } else {
+            phonenumber = Integer.parseInt(sphone);
+        }
+        String note = request.getParameter("note");
         String mac = request.getParameter("mac");
-        
-        moje.entity.Dataoutput dataDevOut = moje.appLayer.DataOutputBO.editDataOutput(intId, note, phonenumber, mac);
+
+        moje.entity.Dataoutput dataDevOut = moje.appLayer.DataOutputBO.
+                editDataOutput(intId, note, phonenumber, mac);
         String name = dataDevOut.getDatadevout().toString();
         Integer dataDeviceId = dataDevOut.getDeviceId().getId();
 
-        String link = ("readDataDeviceOutputs.jsp?type=edit&name="+name+"&id="+dataDeviceId);
+        String link = ("readDataDeviceOutputs.jsp?type=edit&name=" + name
+                + "&id=" + dataDeviceId);
         response.sendRedirect(link);
-    }    
-    
-// novinka start    
+    }
     HttpSession sess = request.getSession();
-    if (request.getParameter("phoneNumber")!=null){
-        Integer phoneNumber = Integer.parseInt(request.getParameter("phoneNumber"));
+    if (request.getParameter("phoneNumber") != null) {
+        Integer phoneNumber = Integer.parseInt(request.getParameter(
+                "phoneNumber"));
         sess.setAttribute("phoneNumber", phoneNumber);
         response.sendRedirect("findPhoneNumber.jsp");
     }
-//novinka konec
-
     response.sendRedirect("index.jsp");
-
-    /*   
-    RequestDispatcher rd = request.getRequestDispatcher("formCableHeadOutputsProcessing.jsp");
-    rd.forward(request, response);
-    */
 %>

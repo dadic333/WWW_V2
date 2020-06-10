@@ -94,6 +94,7 @@
       <h3>Výpis PBX</h3>
       <div id="message"></div>
       <div class="container mb-3">
+        <div class="table-responsive">
         <table id="tabulka" class="table table-striped table-bordered compact order-column ">
             <thead>
               <tr>
@@ -156,6 +157,7 @@
               </tr>
             </tfoot>
         </table>
+      </div>
       </div>
     </main>
     <script>

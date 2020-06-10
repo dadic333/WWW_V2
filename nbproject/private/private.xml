@@ -3,11 +3,20 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/css/styl.css</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readCableHeads.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/newDataDeviceWithOutputs.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/deleteDataDevice.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/favs/ico.ico</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/deleteCableHead.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/css/styl.css</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/findPhoneNumber.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/pices/navbar.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readDataDeviceOutputs.jsp</file>
             <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readFindPhoneNumber.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/error.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/readDataDevices.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/editDataDeviceForm.jsp</file>
+            <file>file:/C:/Users/Honza/Documents/NetBeansProjects/KabelovaKnihaWebV2/web/editDataDeviceOutput.jsp</file>
         </group>
     </open-files>
 </project-private>

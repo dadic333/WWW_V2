@@ -8,11 +8,11 @@
     <span class="navbar-toggler-icon"></span>      
   </button>   
   <div class="collapse navbar-collapse" id="navbarObsah">             
-    <div class="navbar-nav d-flex flex-fill">   
-        <div class="nav-link btn flex-fill btn-dark m-2 "><a href="readCableHeads.jsp" class="align-self-center">Kabelové hlavy</a></div>                                             
-        <div class="nav-link btn flex-fill btn-dark m-2 "><a href="readDataDevices.jsp" class="align-self-center">Datové prvky</a></div>                                                      
-        <div class="nav-link btn flex-fill btn-dark m-2 "><a href="readPBXs.jsp" class="align-self-center">PBX</a></div>                                           
-        <div class="nav-link btn flex-fill btn-dark m-2 "><a href="readTelExchanges.jsp" class="align-self-center">Telefonní ústředny</a></div> 
+    <div class="navbar-nav d-flex flex-fill"> 
+        <a href="readCableHeads.jsp" class="nav-link btn flex-fill btn-dark m-2" role="button">Kabelové hlavy</a>
+        <a href="readDataDevices.jsp" class="nav-link btn flex-fill btn-dark m-2" role="button">Datové prvky</a>
+        <a href="readPBXs.jsp" class="nav-link btn flex-fill btn-dark m-2" role="button">PBX</a>
+        <a href="readTelExchanges.jsp" class="nav-link btn flex-fill btn-dark m-2" role="button">Telefonní ústředny</a>
     </div> 
     <div class=" m-2">
         <div class=" m-2">

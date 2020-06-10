@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <%@page errorPage="error.jsp" %>
-<% request.setCharacterEncoding("utf-8"); %>
-<%
+<% 
+    request.setCharacterEncoding("utf-8");
     HttpSession sess = request.getSession();
     sess.removeAttribute("dataDeviceItem");
 //Získání parametrů z formuláře    
